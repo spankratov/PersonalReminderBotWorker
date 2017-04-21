@@ -159,7 +159,7 @@ echo "${BOLD}Build configuration files...${NORMAL_FONT}"
 cd /etc/init.d/
 wget https://raw.githubusercontent.com/celery/celery/3.1/extra/generic-init.d/celeryd
 chmod +x celeryd
-cd $HOME/PersonalReminderBot
+cd $HOME/PersonalReminderBotWorker
 cp -i celeryd.sh /etc/default/
 sudo chown celery: /rootPersonalReminderBotWorker
 if [ $? -eq 0 ]; then

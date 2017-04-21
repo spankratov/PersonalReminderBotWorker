@@ -21,7 +21,7 @@ CELERY_APP="main.celery"
 #CELERY_APP="proj.tasks:app"
 
 # Where to chdir at start.
-CELERYD_CHDIR="$HOME/PersonalReminderBot"
+CELERYD_CHDIR="$HOME/PersonalReminderBotWorker"
 
 # Extra command-line arguments to the worker
 CELERYD_OPTS="--time-limit=300 -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3"
