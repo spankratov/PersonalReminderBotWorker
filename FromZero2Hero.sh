@@ -170,15 +170,31 @@ else
     echo
 fi
 
+echo "${BOLD}Add Celery user...${NORMAL_FONT}"
+
 sudo adduser celery
+chown -R celery:celery /var/log/celery/
+chown -R celery:celery /var/run/celery/
+
+if [ $? -eq 0 ]; then
+    $SETCOLOR_SUCCESS
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
+    $SETCOLOR_NORMAL
+    echo
+else
+    $SETCOLOR_FAILURE
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
+    $SETCOLOR_NORMAL
+    echo
+fi
 
 echo "${BOLD}Build configuration files...${NORMAL_FONT}"
 cd /etc/init.d/
 wget https://raw.githubusercontent.com/celery/celery/3.1/extra/generic-init.d/celeryd
 chmod +x celeryd
-cd $HOME/PersonalReminderBotWorker
+cd /home/PersonalReminderBotWorker
 cp -i celeryd.sh /etc/default/
-sudo chown celery: /root/PersonalReminderBotWorker
+#sudo chown celery: /root/PersonalReminderBotWorker
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"

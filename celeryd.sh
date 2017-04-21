@@ -4,7 +4,7 @@
 #CELERYD_NODES="worker1"
 #   but you can also start multiple and configure settings
 #   for each in CELERYD_OPTS
-CELERYD_NODES="worker1 worker2 worker3"
+#CELERYD_NODES="worker1 worker2 worker3"
 #   alternatively, you can specify the number of nodes to start:
 #CELERYD_NODES=10
 
@@ -21,10 +21,11 @@ CELERY_APP="main.celery"
 #CELERY_APP="proj.tasks:app"
 
 # Where to chdir at start.
-CELERYD_CHDIR="$HOME/PersonalReminderBotWorker"
+CELERYD_CHDIR="/home/PersonalReminderBotWorker"
 
 # Extra command-line arguments to the worker
-CELERYD_OPTS="--time-limit=300 -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3"
+#CELERYD_OPTS="--time-limit=300 -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3"
+CELERYD_OPTS="--time-limit=300 -Q nlp,reminders --autoscale=10,3"
 # Configure node-specific settings by appending node name to arguments:
 #CELERYD_OPTS="--time-limit=300 -c 8 -c:worker2 4 -c:worker3 2 -Ofair:worker1"
 
@@ -38,8 +39,8 @@ CELERYD_PID_FILE="/var/run/celery/%n.pid"
 # Workers should run as an unprivileged user.
 #   You need to create this user manually (or you can choose
 #   a user/group combination that already exists (e.g., nobody).
-CELERYD_USER="nobody"
-CELERYD_GROUP="nobody"
+CELERYD_USER="celery"
+CELERYD_GROUP="celery"
 
 # If enabled pid and log directories will be created if missing,
 # and owned by the userid/group configured.
