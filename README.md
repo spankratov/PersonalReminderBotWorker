@@ -5,7 +5,7 @@ Celery worker code for PersonalReminderBot project
 ## :wine_glass: Maximize your *free* time!
 First of all, clone or download this repo to your machine. 
 ```sh
-$ git clone https://github.com/AlexWorldD/PersonalReminderBot
+$ git clone https://github.com/AlexWorldD/PersonalReminderBotWorker
 ```
 Then, your should decide which type of machine you'd like to create: RabbitMQ server or just a Worker. For Worker you should use MakeWorker script:
 ```sh
