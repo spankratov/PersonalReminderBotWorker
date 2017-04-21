@@ -95,7 +95,7 @@ wget https://raw.githubusercontent.com/celery/celery/3.1/extra/generic-init.d/ce
 chmod +x celeryd
 cd $HOME/PersonalReminderBot
 cp -i celeryd.sh /etc/default/
-sudo chown celery: /root
+sudo chown celery: /root/PersonalReminderBotWorker
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -110,6 +110,7 @@ fi
 
 # Configure Worker
 echo "${BOLD}Let's configure this worker! ${NORMAL_FONT}"
+
 read -p 'Bot token: ' token
 read -p 'Gateway URL: ' gt
 echo  >> default_config.py
