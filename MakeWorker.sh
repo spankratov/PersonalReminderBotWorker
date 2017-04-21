@@ -102,7 +102,8 @@ else
     $SETCOLOR_NORMAL
     echo
 fi
-sudo adduser celery
+
+#sudo adduser celery
 
 echo "${BOLD}Build configuration files...${NORMAL_FONT}"
 cd /etc/init.d/
