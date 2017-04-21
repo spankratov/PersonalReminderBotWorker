@@ -161,7 +161,7 @@ wget https://raw.githubusercontent.com/celery/celery/3.1/extra/generic-init.d/ce
 chmod +x celeryd
 cd $HOME/PersonalReminderBotWorker
 cp -i celeryd.sh /etc/default/
-sudo chown celery: /rootPersonalReminderBotWorker
+sudo chown celery: /root/PersonalReminderBotWorker
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
