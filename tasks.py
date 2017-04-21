@@ -108,4 +108,4 @@ def detect_datetime(text, default_delay):
 def remind(chat_id, send_type, content):
     logging.info("Celery task 'remind' is invoked, chat_id: {}, send_type: {}, content: {}".format(chat_id, send_type, content))
     requests.post(default_config.RETRANSMISSION_URL,
-                  json={'chat_id': chat_id, 'send_type': send_type, 'content': content})
+                  json={'chat_id': chat_id, 'send_type': send_type, 'content': content}, verify=False)

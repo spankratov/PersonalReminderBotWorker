@@ -106,6 +106,8 @@ fi
 echo "${BOLD}Add Celery user...${NORMAL_FONT}"
 
 sudo adduser celery
+sudo mkdir /var/log/celery/
+sudo mkdir /var/run/celery/
 chown -R celery:celery /var/log/celery/
 chown -R celery:celery /var/run/celery/
 
