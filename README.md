@@ -23,6 +23,7 @@ $ ./FromZero2Hero.sh
 ```
 <hr>
 
+![Scheme](https://github.com/AlexWorldD/PersonalReminderBotWorker/raw/master/Scheme.png)
 ## :alien: Manual:
 * Delayed...
 
