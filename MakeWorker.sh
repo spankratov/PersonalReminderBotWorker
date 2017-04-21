@@ -110,7 +110,7 @@ wget https://raw.githubusercontent.com/celery/celery/3.1/extra/generic-init.d/ce
 chmod +x celeryd
 cd $HOME/PersonalReminderBotWorker
 cp -i celeryd.sh /etc/default/
-sudo chown celery: /root/PersonalReminderBotWorker
+#sudo chown celery: /root/PersonalReminderBotWorker
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -166,8 +166,8 @@ fi
 
 echo "${BOLD}Start Celery Worker...${NORMAL_FONT}"
 
-celery worker -l info -A main.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
-# celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
+#celery worker -l info -A main.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
+celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
 
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
