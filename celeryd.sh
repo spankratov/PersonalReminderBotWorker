@@ -16,7 +16,7 @@ CELERY_BIN="/usr/local/bin/celery"
 
 # App instance to use
 # comment out this line if you don't use an app
-CELERY_APP="flaskapp.celery"
+CELERY_APP="main.celery"
 # or fully qualified:
 #CELERY_APP="proj.tasks:app"
 
@@ -24,7 +24,7 @@ CELERY_APP="flaskapp.celery"
 CELERYD_CHDIR="$HOME/PersonalReminderBot"
 
 # Extra command-line arguments to the worker
-CELERYD_OPTS="--time-limit=300 -q nlp,reminders"
+CELERYD_OPTS="--time-limit=300 -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3"
 # Configure node-specific settings by appending node name to arguments:
 #CELERYD_OPTS="--time-limit=300 -c 8 -c:worker2 4 -c:worker3 2 -Ofair:worker1"
 

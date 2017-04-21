@@ -174,6 +174,46 @@ else
     echo
 fi
 
+# Configure Worker
+echo "${BOLD}Let's configure this worker! ${NORMAL_FONT}"
+read -p 'Bot token: ' token
+read -p 'Gateway URL: ' gt
+echo  >> default_config.py
+echo 'BOT_TOKEN = "'$token'"' >> default_config.py
+echo  >> default_config.py
+echo 'GATEWAY_URL = "'$gt'"' >> default_config.py
+echo  >> default_config.py
+echo 'RETRANSMISSION_URL = "'$gt'/retransmit/'$token'"' >> default_config.py
+echo  >> default_config.py
+
+if [ $? -eq 0 ]; then
+    $SETCOLOR_SUCCESS
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
+    $SETCOLOR_NORMAL
+    echo
+else
+    $SETCOLOR_FAILURE
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
+    $SETCOLOR_NORMAL
+    echo
+fi
+
+#echo "${BOLD}Start Celery Worker...${NORMAL_FONT}"
+#
+#celery worker -l info -A flaskapp.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
+#
+#if [ $? -eq 0 ]; then
+#    $SETCOLOR_SUCCESS
+#    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
+#    $SETCOLOR_NORMAL
+#    echo
+#else
+#    $SETCOLOR_FAILURE
+#    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
+#    $SETCOLOR_NORMAL
+#    echo
+#fi
+
 #echo "${BOLD}Configure RabbitMQ...${NORMAL_FONT}"
 #read -p 'RabbitMQ Server IP: ' ip
 #sed -i "s/\(\@.*\/\)/@$ip\//g" default_config.py
