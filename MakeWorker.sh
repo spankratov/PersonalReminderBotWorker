@@ -73,6 +73,21 @@ else
     echo
 fi
 
+echo "${BOLD}Fix Celery...${NORMAL_FONT}"
+# apt list --installed
+pip install -e git://github.com/alanhamlett/celery.git@73147a9da31f2932eb4778e9474fbe72f23d21c2#egg=Celery
+if [ $? -eq 0 ]; then
+    $SETCOLOR_SUCCESS
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
+    $SETCOLOR_NORMAL
+    echo
+else
+    $SETCOLOR_FAILURE
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
+    $SETCOLOR_NORMAL
+    echo
+fi
+
 echo "${BOLD}Install requests...${NORMAL_FONT}"
 # apt list --installed
 pip install requests
@@ -152,6 +167,7 @@ fi
 echo "${BOLD}Start Celery Worker...${NORMAL_FONT}"
 
 celery worker -l info -A main.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
+# celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
 
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS

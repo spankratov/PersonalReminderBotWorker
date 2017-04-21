@@ -79,6 +79,7 @@ sudo rabbitmqctl add_user worker w
 sudo rabbitmqctl add_vhost vhost
 # set permissions for user on vhost
 sudo rabbitmqctl set_permissions -p vhost worker ".*" ".*" ".*"
+sudo rabbitmqctl set_permissions -p vhost radmin ".*" ".*" ".*"
 
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
@@ -126,6 +127,7 @@ fi
 echo "${BOLD}Install Celery...${NORMAL_FONT}"
 # apt list --installed
 pip install celery
+
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -138,6 +140,21 @@ else
     echo
 fi
 
+# Installing Celery
+echo "${BOLD}Fix Celery...${NORMAL_FONT}"
+# apt list --installed
+pip install -e git://github.com/alanhamlett/celery.git@73147a9da31f2932eb4778e9474fbe72f23d21c2#egg=Celery
+if [ $? -eq 0 ]; then
+    $SETCOLOR_SUCCESS
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
+    $SETCOLOR_NORMAL
+    echo
+else
+    $SETCOLOR_FAILURE
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
+    $SETCOLOR_NORMAL
+    echo
+fi
 echo "${BOLD}Install requests...${NORMAL_FONT}"
 # apt list --installed
 pip install requests
