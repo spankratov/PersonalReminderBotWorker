@@ -51,7 +51,7 @@ def process_word_for_date(word, now):
 
 @celery.task
 def detect_datetime(text, default_delay):
-    logging.info("Celery task 'detect_datetime' is invoked, text: {}, delay: {}".format(text, default_delay))
+    logging.info(u"Celery task 'detect_datetime' is invoked, text: {}, delay: {}".format(text, default_delay))
     user_now = datetime.utcnow()
     result = user_now
     changed = False
@@ -106,6 +106,6 @@ def detect_datetime(text, default_delay):
 
 @celery.task
 def remind(chat_id, send_type, content):
-    logging.info("Celery task 'remind' is invoked, chat_id: {}, send_type: {}, content: {}".format(chat_id, send_type, content))
+    logging.info(u"Celery task 'remind' is invoked, chat_id: {}, send_type: {}, content: {}".format(chat_id, send_type, content))
     requests.post(default_config.RETRANSMISSION_URL,
-                  json={'chat_id': chat_id, 'send_type': send_type, 'content': content})
+                  json={'chat_id': chat_id, 'send_type': send_type, 'content': content}, verify=False)
