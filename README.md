@@ -9,7 +9,7 @@ $ cd /home
 ```
 First of all, clone or download this repo to your machine. 
 ```sh
-$ git clone https://github.com/AlexWorldD/PersonalReminderBotWorker
+$ git clone https://github.com/spankratov/PersonalReminderBotWorker
 ```
 Then, your should decide which type of machine you'd like to create: RabbitMQ server or just a Worker. For Worker you should use MakeWorker script:
 ```sh
@@ -27,7 +27,7 @@ $ ./FromZero2Hero.sh
 ```
 <hr>
 
-![Scheme](https://github.com/AlexWorldD/PersonalReminderBotWorker/raw/master/Scheme.png)
+![Scheme](https://github.com/spankratov/PersonalReminderBotWorker/raw/master/Scheme.png)
 ## :alien: Manual:
 * Delayed...
 
