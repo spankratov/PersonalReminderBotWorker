@@ -22,8 +22,8 @@ $ ./MakeWorker.sh
 ```
 And amazing FromZero2Hero for RabbitMQ installation and configuration.
 ```sh
-$ chmod +x FromZero2Hero.sh
-$ ./FromZero2Hero.sh
+$ chmod +x MakeRabbit.sh
+$ ./MakeRabbit.sh
 ```
 <hr>
 
