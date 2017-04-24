@@ -154,6 +154,11 @@ echo  >> default_config.py
 echo 'RETRANSMISSION_URL = "'$gt'/retransmit/'$token'"' >> default_config.py
 echo  >> default_config.py
 
+read -p 'Select queue: ' mode
+t_t='CELERYD_OPTS="--time-limit=300 -Q '$mode' --statedb=/var/run/celery/%n.state --autoscale=10,3"'
+echo  >> /etc/default/celeryd
+echo $t_t >> /etc/default/celeryd
+
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -181,6 +186,8 @@ else
     $SETCOLOR_NORMAL
     echo
 fi
+
+
 
 echo "${BOLD}Start Celery Worker...${NORMAL_FONT}"
 
