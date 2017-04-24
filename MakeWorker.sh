@@ -12,35 +12,6 @@ NORMAL_FONT=$(tput sgr0)
 
 # Firstly, update all packages
 echo "${BOLD}Update your system... to Windows 10. Thx)${NORMAL_FONT}"
-sudo apt-get update -y
-sudo apt-get upgrade -y
-if [ $? -eq 0 ]; then
-    $SETCOLOR_SUCCESS
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
-    $SETCOLOR_NORMAL
-    echo
-else
-    $SETCOLOR_FAILURE
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
-    $SETCOLOR_NORMAL
-    echo
-fi
-
-
-# 3d, Installing DateTime parser
-echo "${BOLD}Install DateUtil...${NORMAL_FONT}"
-apt-get -y install python-dateutil
-if [ $? -eq 0 ]; then
-    $SETCOLOR_SUCCESS
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
-    $SETCOLOR_NORMAL
-    echo
-else
-    $SETCOLOR_FAILURE
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
-    $SETCOLOR_NORMAL
-    echo
-fi
 
 # 4th Flask
 echo "${BOLD}Install pip...${NORMAL_FONT}"
@@ -56,6 +27,23 @@ else
     $SETCOLOR_NORMAL
     echo
 fi
+
+# 3d, Installing DateTime parser
+echo "${BOLD}Install DateUtil...${NORMAL_FONT}"
+pip install python-dateutil
+if [ $? -eq 0 ]; then
+    $SETCOLOR_SUCCESS
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
+    $SETCOLOR_NORMAL
+    echo
+else
+    $SETCOLOR_FAILURE
+    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
+    $SETCOLOR_NORMAL
+    echo
+fi
+
+
 # Installing Celery
 echo "${BOLD}Install Celery...${NORMAL_FONT}"
 # apt list --installed
