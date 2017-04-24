@@ -3,6 +3,10 @@ Celery worker code for PersonalReminderBot project
 # Personal Reminder BotWorker v2.0
 ### These scripts allow you to rise up your personal bot reminder on any Hardware.
 ## :wine_glass: Maximize your *free* time!
+Go to your /home directory:
+```sh
+$ cd /home
+```
 First of all, clone or download this repo to your machine. 
 ```sh
 $ git clone https://github.com/AlexWorldD/PersonalReminderBotWorker
