@@ -15,6 +15,7 @@ echo "${BOLD}Update your system... to Windows 10. Thx)${NORMAL_FONT}"
 
 # 4th Flask
 echo "${BOLD}Install pip...${NORMAL_FONT}"
+sudo apt-get update -y
 sudo apt install -y python-pip
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
