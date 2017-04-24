@@ -43,9 +43,8 @@ else
 fi
 
 # 4th Flask
-echo "${BOLD}Install Flask...${NORMAL_FONT}"
+echo "${BOLD}Install pip...${NORMAL_FONT}"
 sudo apt install -y python-pip
-sudo pip install Flask
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -185,19 +184,7 @@ fi
 
 echo "${BOLD}Start Celery Worker...${NORMAL_FONT}"
 
-#celery worker -l info -A main.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
-celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
-
-if [ $? -eq 0 ]; then
-    $SETCOLOR_SUCCESS
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
-    $SETCOLOR_NORMAL
-    echo
-else
-    $SETCOLOR_FAILURE
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
-    $SETCOLOR_NORMAL
-    echo
-fi
+celery worker -l info -A main.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
+#celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
 
 
