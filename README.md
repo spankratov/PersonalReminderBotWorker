@@ -20,7 +20,7 @@ And finally, Run script, which'll build a Worker from your machine!
 ```sh
 $ ./MakeWorker.sh
 ```
-And amazing FromZero2Hero for RabbitMQ installation and configuration.
+And amazing MakeRabbit.sh for RabbitMQ installation and configuration.
 ```sh
 $ chmod +x MakeRabbit.sh
 $ ./MakeRabbit.sh
