@@ -12,8 +12,11 @@ NORMAL_FONT=$(tput sgr0)
 
 # Firstly, update all packages
 echo "${BOLD}Update your system... to Windows 10. Thx)${NORMAL_FONT}"
+
+# 4th Flask
+echo "${BOLD}Install pip...${NORMAL_FONT}"
 sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo apt install -y python-pip
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -25,11 +28,10 @@ else
     $SETCOLOR_NORMAL
     echo
 fi
-
 
 # 3d, Installing DateTime parser
 echo "${BOLD}Install DateUtil...${NORMAL_FONT}"
-apt-get -y install python-dateutil
+pip install python-dateutil
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
     echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
@@ -42,21 +44,7 @@ else
     echo
 fi
 
-# 4th Flask
-echo "${BOLD}Install Flask...${NORMAL_FONT}"
-sudo apt install -y python-pip
-sudo pip install Flask
-if [ $? -eq 0 ]; then
-    $SETCOLOR_SUCCESS
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
-    $SETCOLOR_NORMAL
-    echo
-else
-    $SETCOLOR_FAILURE
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
-    $SETCOLOR_NORMAL
-    echo
-fi
+
 # Installing Celery
 echo "${BOLD}Install Celery...${NORMAL_FONT}"
 # apt list --installed
@@ -128,7 +116,7 @@ cd /etc/init.d/
 wget https://raw.githubusercontent.com/celery/celery/3.1/extra/generic-init.d/celeryd
 chmod +x celeryd
 cd /home/PersonalReminderBotWorker
-cp -i celeryd.sh /etc/default/
+cp -i celeryd /etc/default/
 #sudo chown celery: /root/PersonalReminderBotWorker
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
@@ -154,6 +142,11 @@ echo 'GATEWAY_URL = "'$gt'"' >> default_config.py
 echo  >> default_config.py
 echo 'RETRANSMISSION_URL = "'$gt'/retransmit/'$token'"' >> default_config.py
 echo  >> default_config.py
+
+read -p 'Select queue: ' mode
+t_t='CELERYD_OPTS="--time-limit=300 -Q '$mode' --statedb=/var/run/celery/%n.state --autoscale=10,3"'
+echo  >> /etc/default/celeryd
+echo $t_t >> /etc/default/celeryd
 
 if [ $? -eq 0 ]; then
     $SETCOLOR_SUCCESS
@@ -183,21 +176,12 @@ else
     echo
 fi
 
+
+
 echo "${BOLD}Start Celery Worker...${NORMAL_FONT}"
 
+/etc/init.d/celeryd start
 #celery worker -l info -A main.celery -Q nlp,reminders --statedb=/var/run/celery/%n.state --autoscale=10,3
-celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
-
-if [ $? -eq 0 ]; then
-    $SETCOLOR_SUCCESS
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[OK]"
-    $SETCOLOR_NORMAL
-    echo
-else
-    $SETCOLOR_FAILURE
-    echo -n "$(tput hpa $(tput cols))$(tput cub 6)[fail]"
-    $SETCOLOR_NORMAL
-    echo
-fi
+#celery worker -l info -A main.celery -Q nlp,reminders --autoscale=10,3
 
 
